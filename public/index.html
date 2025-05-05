@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>Book Tracker</h1>
+            <div class="nav-links">
+                <a href="#" id="home-link">Home</a>
+                <a href="#" id="login-link">Login</a>
+                <a href="#" id="register-link">Register</a>
+                <a href="#" id="upload-link" style="display: none;">Upload Book</a>
+                <a href="#" id="my-books-link" style="display: none;">My Books</a>
+                <a href="#" id="admin-link" style="display: none;">Admin Panel</a>
+                <a href="#" id="logout-link" style="display: none;">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Welcome Banner -->
+        <section id="welcome-banner" class="banner">
+            <h2>Welcome to Book Tracker!</h2>
+            <p>Track, upload, and manage your digital book collection with ease. Register or log in to get started.</p>
+        </section>
+        <!-- Recent Books Section -->
+        <section id="recent-books-section" class="recent-books">
+            <h2>Recent Books</h2>
+            <div id="recent-books-list"></div>
+        </section>
+        <!-- Login Form -->
+        <div id="login-form" class="form-container">
+            <h2>Login</h2>
+            <form id="login">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <!-- Register Form -->
+        <div id="register-form" class="form-container" style="display: none;">
+            <h2>Register</h2>
+            <form id="register">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <!-- Book List -->
+        <div id="book-list" class="book-list">
+            <h2>Available Books</h2>
+            <div id="books-container"></div>
+        </div>
+        <!-- Upload Form -->
+        <div id="upload-form" class="form-container" style="display: none;">
+            <h2>Upload Book</h2>
+            <form id="upload">
+                <input type="text" placeholder="Title" required>
+                <input type="text" placeholder="Author" required>
+                <textarea placeholder="Description" required></textarea>
+                <input type="file" accept=".pdf,.doc,.docx,.epub" required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        <!-- Admin Panel -->
+        <div id="admin-panel" style="display: none;">
+            <h2>Admin Panel</h2>
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="users">Users</button>
+                <button class="tab-btn" data-tab="pending-books">Pending Books</button>
+            </div>
+            <div id="users-tab" class="tab-content">
+                <h3>Users</h3>
+                <div id="users-list"></div>
+            </div>
+            <div id="pending-books-tab" class="tab-content" style="display: none;">
+                <h3>Pending Books</h3>
+                <div id="pending-books-list"></div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Book Tracker. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html> 
