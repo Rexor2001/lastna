@@ -31,7 +31,7 @@ try {
 }
 
 // MongoDB Connection with enhanced error handling
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://admin:admin@cluster0.eb80mr0.mongodb.net/booktracker?retryWrites=true&w=majority';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://admin:n8GvZLChcyPIMnay@cluster0.eb80mr0.mongodb.net/booktracker?retryWrites=true&w=majority';
 
 // MongoDB connection options
 const mongooseOptions = {
