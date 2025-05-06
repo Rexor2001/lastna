@@ -37,9 +37,13 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://booktracker:Admin1
 const mongooseOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000,
+    serverSelectionTimeoutMS: 30000, // Increased timeout
     socketTimeoutMS: 45000,
-    family: 4
+    family: 4,
+    maxPoolSize: 10,
+    minPoolSize: 5,
+    retryWrites: true,
+    retryReads: true
 };
 
 // Function to handle MongoDB connection
@@ -56,9 +60,7 @@ async function connectToMongoDB() {
         const safeUri = MONGODB_URI.replace(/\/\/([^:]+):([^@]+)@/, '//****:****@');
         console.log('Connecting to MongoDB at:', safeUri);
         
-        await mongoose.connect(MONGODB_URI, mongooseOptions);
-        
-        // Connection events
+        // Set up connection events before connecting
         mongoose.connection.on('connected', () => {
             console.log('MongoDB Connected Successfully');
         });
@@ -75,6 +77,9 @@ async function connectToMongoDB() {
             console.warn('MongoDB Disconnected');
         });
 
+        // Connect to MongoDB
+        await mongoose.connect(MONGODB_URI, mongooseOptions);
+        
         // Handle process termination
         process.on('SIGINT', async () => {
             try {
@@ -91,7 +96,8 @@ async function connectToMongoDB() {
         console.error('MongoDB Initial Connection Error:', err);
         console.error('Please make sure MongoDB is installed and running on your system.');
         console.error('You can download MongoDB from: https://www.mongodb.com/try/download/community');
-        process.exit(1);
+        // Don't exit immediately, try to reconnect
+        setTimeout(connectToMongoDB, 5000);
     }
 }
 
@@ -161,7 +167,7 @@ app.use((req, res) => {
 
 // Start server with error handling
 const PORT = process.env.PORT || 3001;
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`API available at http://localhost:${PORT}/api`);
     console.log('To test the API, visit: http://localhost:3001/api/test');
