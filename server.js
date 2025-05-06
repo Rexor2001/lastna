@@ -180,8 +180,8 @@ server.on('error', (err) => {
 app.get('/create-admin', async (req, res) => {
     const User = require('./models/User');
     const username = 'admin';
-    const email = 'gege@gmail.com';
-    const password = 'gege1234'; // plain text, let Mongoose hash it!
+    const email = 'ge@gmail.com';
+    const password = 'gege123'; // plain text, let Mongoose hash it!
 
     try {
         let user = await User.findOne({ email });
