@@ -8,7 +8,7 @@ const app = express();
 
 // CORS Configuration
 app.use(cors({
-    origin: 'http://localhost:3001',
+    origin: '*',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
@@ -31,7 +31,7 @@ try {
 }
 
 // MongoDB Connection with enhanced error handling
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://admin:admin@cluster0.eb80mr0.mongodb.net/booktracker?retryWrites=true&w=majority';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://booktracker:Admin123@cluster0.n5fvg38.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 // MongoDB connection options
 const mongooseOptions = {
