@@ -161,7 +161,7 @@ app.use((req, res) => {
 
 // Start server with error handling
 const PORT = process.env.PORT || 3001;
-const server = app.listen(PORT, '0.0.0.0/0', () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`API available at http://localhost:${PORT}/api`);
     console.log('To test the API, visit: http://localhost:3001/api/test');
